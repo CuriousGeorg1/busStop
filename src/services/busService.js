@@ -11,13 +11,13 @@ dotenv.config();
 
 const busApi = process.env.API_URI;
 
-// This function will sanitize the data from the API and return
-// only the necessary data.
+// This function will sanitize the data from foli API and return
+// only the necessary data. Used for a single bus stop.
 const sanitizeStopData = ({ data }) => {
   if (!data || !data.result) {
     return JSON.stringify({ error: "Bus stop not found", status: 404 });
   }
-  // Choose the data you want to return
+  // Defines the data we want to return
   return data.result.map((entry) => ({
     lineref: entry.lineref,
     destination: entry.destinationdisplay,
@@ -29,26 +29,34 @@ const sanitizeStopData = ({ data }) => {
     ).toLocaleTimeString(),
   }));
 };
-/*
-  This function will fetch the bus stops from the API
-  and return the data.
 
-  format:
-  {
-  "1": {
-    "stop_name": "Turun satama (Silja)"
-  }
-}
+// This function will transform the data from foli API
+// to a more readable format. Used for multiple bus stops.
+const transformStops = (stops) => {
+  return Object.entries(stops).map(([id, stop]) => ({
+    id: id,
+    name: stop.stop_name,
+  }));
+};
+
+/*
+  This function will fetch the bus stops from the API,
+  transform the data and return it to controller.
 */
 export async function getBusStops() {
-  // fetch the data from foli API
-  const response = await axios.get(`${busApi}/pretty`);
-  return response.data;
+  try {
+    const response = await axios.get(`${busApi}/pretty`);
+    console.log(transformStops(response.data));
+    return transformStops(response.data);
+  } catch (error) {
+    console.error("Error fetching bus stops:", error);
+    return [];
+  }
 }
 
 /*
   This function will fetch a single bus stop from the API,
-  sanitize the data and return it.
+  sanitize the data and return it to controller.
 */
 export async function getBusStop(stopId) {
   try {
