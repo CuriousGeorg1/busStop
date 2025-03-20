@@ -1,12 +1,19 @@
-import { useState, useEffect } from "react";
-import busServices from "./services/api";
+import React from "react";
+import AppRoutes from "./routes/AppRoutes";
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
   return (
-    <div>
-      <p>App</p>
-    </div>
+    <Router>
+      <Header />
+      <main>
+        <AppRoutes />
+      </main>
+      <Footer />
+    </Router>
   );
 }
 
