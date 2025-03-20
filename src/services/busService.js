@@ -17,7 +17,7 @@ const sanitizeStopData = ({ data }) => {
   if (!data || !data.result) {
     return JSON.stringify({ error: "Bus stop not found", status: 404 });
   }
-
+  // Choose the data you want to return
   return data.result.map((entry) => ({
     lineref: entry.lineref,
     destination: entry.destinationdisplay,
@@ -41,6 +41,7 @@ const sanitizeStopData = ({ data }) => {
 }
 */
 export async function getBusStops() {
+  // fetch the data from foli API
   const response = await axios.get(`${busApi}/pretty`);
   return response.data;
 }
@@ -51,8 +52,9 @@ export async function getBusStops() {
 */
 export async function getBusStop(stopId) {
   try {
+    // fetch the data from foli API
     const response = await axios.get(`${busApi}/${stopId}/pretty`);
-    console.log(response);
+    // sanitize the data
     const sanitizedStopData = sanitizeStopData(response);
     return sanitizedStopData;
   } catch (error) {
