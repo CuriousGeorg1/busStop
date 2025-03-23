@@ -1,4 +1,13 @@
 import React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Header from "../components/Header";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 /**
  * Home page component.
@@ -10,9 +19,28 @@ import React from "react";
  */
 const Home = () => {
   return (
-    <div>
-      <p>Home</p>
-    </div>
+    <>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <div>
+          <Header className="header" />
+        </div>
+        <div className="wrapper">
+          <h1>Welcome to the bus stop app</h1>
+          <div className="image-container">
+            <img
+              classname="image"
+              src="BusTracking.jpg"
+              alt="Home page photo"
+            />
+          </div>
+          <p>
+            This app allows you to view bus stops and add them to your
+            favourites.
+          </p>
+        </div>
+      </ThemeProvider>
+    </>
   );
 };
 

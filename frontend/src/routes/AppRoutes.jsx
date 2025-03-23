@@ -16,12 +16,14 @@ import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/bus-stops" element={<BusStops />} />
-      <Route path="/favourite-stops" element={<FavouriteStops />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/bus-stops" element={<BusStops />} />
+        <Route path="/favourite-stops" element={<FavouriteStops />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 };
 
