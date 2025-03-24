@@ -13,7 +13,7 @@ const getBusStops = async () => {
 };
 
 const getBusStop = async (id) => {
-  const request = await axios.get(`${baseURL}/api/${id}`);
+  const request = await axios.get(`${baseURL}/api/busStops/${id}`);
   return request.data;
 };
 

@@ -1,7 +1,8 @@
 import { Link } from "react-router";
 import TemporaryDrawer from "./Drawer";
 import "./components.css";
-// simple header component. Should be changed later
+
+// Header component, can be updated to include more functionality
 const Header = () => {
   return (
     <>

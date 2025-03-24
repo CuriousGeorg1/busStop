@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useBusStops } from "../context/BusStopContext";
 import Checkbox from "@mui/material/Checkbox";
+import { Link } from "react-router-dom";
 
 export default function DataGridDemo() {
   const { busStops, favoriteStops, toggleFavorite } = useBusStops();
@@ -30,7 +31,9 @@ export default function DataGridDemo() {
       field: "bustStopName",
       headerName: "Bus stop",
       width: 150,
-      editable: true,
+      renderCell: (params) => (
+        <Link to={`/bus-stops/${params.row.id}`}>{params.value}</Link>
+      ),
     },
   ];
 

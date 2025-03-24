@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import BusStops from "../pages/BusStops";
 import FavouriteStops from "../pages/FavouriteStops";
 import NotFound from "../pages/NotFound";
+import BusStop from "../pages/BusStop";
 
 /**
  * AppRoutes component
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/bus-stops" element={<BusStops />} />
+        <Route path="bus-stops/:id" element={<BusStop />} />
         <Route path="/favourite-stops" element={<FavouriteStops />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
