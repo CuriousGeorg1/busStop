@@ -29,7 +29,7 @@ const Home = () => {
           <h1>Welcome to the bus stop app</h1>
           <div className="image-container">
             <img
-              classname="image"
+              className="image"
               src="BusTracking.jpg"
               alt="Home page photo"
             />

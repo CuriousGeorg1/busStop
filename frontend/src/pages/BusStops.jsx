@@ -1,5 +1,5 @@
 import React from "react";
-
+import DataGridDemo from "../components/DataList";
 /**
  * BusStops page component.
  * TODO: build a page that displays all bus stops. Should have functionality to
@@ -10,9 +10,14 @@ import React from "react";
  */
 const BusStops = () => {
   return (
-    <div>
-      <p>BusStops</p>
-    </div>
+    <>
+      <div>
+        <p>BusStops</p>
+      </div>
+      <div>
+        <DataGridDemo />
+      </div>
+    </>
   );
 };
 
