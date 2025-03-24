@@ -27,6 +27,7 @@ const sanitizeStopData = ({ data }) => {
     arrival: new Date(
       entry.destinationaimedarrivaltime * 1000
     ).toLocaleTimeString(),
+    destination: entry.destinationdisplay,
   }));
 };
 
