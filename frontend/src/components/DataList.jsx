@@ -1,6 +1,20 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
+import busService from "../services/api";
+
+const [busStops, setBusStops] = useState([]);
+
+useEffect(() => {
+  busService
+    .getBusStops()
+    .then((response) => {
+      setBusStops(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
