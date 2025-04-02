@@ -5,14 +5,14 @@ import { useBusStops } from "../context/BusStopContext";
 import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 
-export default function DataGridDemo() {
+export default function DataGridDemo({ stops, favorites, toggle }) {
   const { busStops, favoriteStops, toggleFavorite } = useBusStops();
   const [filterModel, setFilterModel] = useState({
     items: [],
   });
 
   const handleCheckboxChange = (id) => {
-    toggleFavorite(id);
+    toggle(id);
   };
 
   const columns = [
@@ -37,9 +37,9 @@ export default function DataGridDemo() {
     },
   ];
 
-  const data = busStops.map((stop) => ({
+  const data = stops.map((stop) => ({
     id: stop.id,
-    favourite: favoriteStops.includes(stop.id),
+    favourite: favorites.includes(stop.id),
     bustStopName: stop.name,
   }));
 

@@ -1,5 +1,7 @@
 import React from "react";
 import DataGridDemo from "../components/DataList";
+import { useBusStops } from "../context/BusStopContext";
+import Header from "../components/Header";
 
 /**
  * BusStops page component.
@@ -11,13 +13,20 @@ import DataGridDemo from "../components/DataList";
  */
 
 const BusStops = () => {
+  const { busStops, favoriteStops, toggleFavorite } = useBusStops();
+
   return (
     <>
+      <Header />
       <div>
         <p>Bus Stops</p>
       </div>
       <div>
-        <DataGridDemo />
+        <DataGridDemo
+          stops={busStops}
+          favorites={favoriteStops}
+          toggle={toggleFavorite}
+        />
       </div>
     </>
   );
