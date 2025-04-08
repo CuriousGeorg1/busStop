@@ -1,54 +1,90 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useBusStops } from "../context/BusStopContext";
 import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 
-export default function DataGridDemo({ stops, favorites, toggle }) {
-  const { busStops, favoriteStops, toggleFavorite } = useBusStops();
+/**
+ * DataList component displays a list of bus stops in a data grid format.
+ * It allows users to add or remove bus stops from their favorites.
+ * The same component is used for both displaying all bus stops and favorite bus stops.
+ * @param {Array} stops - Array of bus stops to display.
+ * @param {Function} toggle - Function to toggle the display of favorites.
+ * @param {boolean} displayFavorites - Flag to indicate if favorites should be displayed.
+ * @returns {JSX.Element} - Rendered DataList component.
+ */
+export default function DataList({ stops, displayFavorites }) {
+  const { favoriteStops, toggleFavorite } = useBusStops();
   const [filterModel, setFilterModel] = useState({
     items: [],
   });
 
+  // Function to handle checkbox change aka adding to and removing from favorites
   const handleCheckboxChange = (id) => {
-    toggle(id);
+    toggleFavorite(id);
   };
 
+  /**
+   * Configuring colutmns for the DataGrid.
+   * Defines the behavior of each column.
+   * The first column is a checkbox for adding/removing favorites.
+   * The second column displays the bus stop name as a link.
+   */
   const columns = [
     {
       field: "favourite",
-      headerName: "Favourite",
-      width: 90,
+      headerName: displayFavorites
+        ? "Remove from Favorites"
+        : "Add to Favorites",
+      width: 150,
       renderCell: (params) => (
         <Checkbox
           checked={params.value}
           onChange={() => handleCheckboxChange(params.row.id)}
+          color="primary"
+          sx={{
+            "&.Mui-checked": {
+              color: "#1976d2",
+            },
+          }}
         />
       ),
     },
     {
-      field: "bustStopName",
-      headerName: "Bus stop",
-      width: 150,
+      field: "busStopName",
+      headerName: "Bus Stop Name",
+      width: 200,
       renderCell: (params) => (
-        <Link to={`/bus-stops/${params.row.id}`}>{params.value}</Link>
+        <Link
+          to={`/bus-stops/${params.row.id}`}
+          style={{ textDecoration: "none", color: "#1976d2" }}
+        >
+          {params.value}
+        </Link>
       ),
     },
   ];
 
-  const data = stops.map((stop) => ({
-    id: stop.id,
-    favourite: favorites.includes(stop.id),
-    bustStopName: stop.name,
-  }));
-
-  const rows = data;
+  // Filter stops based on displayFavorites
+  const data = displayFavorites
+    ? favoriteStops.map((stop) => ({
+        id: stop.id,
+        favourite: true,
+        busStopName: stop.name,
+      }))
+    : stops.map((stop) => ({
+        id: stop.id,
+        favourite: favoriteStops.some((favStop) => favStop.id === stop.id),
+        busStopName: stop.name,
+      }));
 
   return (
-    <Box sx={{ height: 400, width: "50vw" }}>
+    <Box
+      sx={{ height: 400, width: "100%", maxWidth: "800px", margin: "0 auto" }}
+    >
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         filterModel={filterModel}
         onFilterModelChange={(newFilterModel) => setFilterModel(newFilterModel)}
@@ -61,6 +97,14 @@ export default function DataGridDemo({ stops, favorites, toggle }) {
         }}
         pageSizeOptions={[5, 10, 15]}
         disableRowSelectionOnClick
+        sx={{
+          "& .MuiDataGrid-cell:focus": {
+            outline: "none",
+          },
+          "& .MuiDataGrid-columnHeader:focus": {
+            outline: "none",
+          },
+        }}
       />
     </Box>
   );

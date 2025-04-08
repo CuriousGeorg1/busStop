@@ -1,5 +1,5 @@
 import React from "react";
-import DataGridDemo from "../components/DataList";
+import DataList from "../components/DataList";
 import { useBusStops } from "../context/BusStopContext";
 import Header from "../components/Header";
 
@@ -22,10 +22,10 @@ const BusStops = () => {
         <p>Bus Stops</p>
       </div>
       <div>
-        <DataGridDemo
+        <DataList
           stops={busStops}
-          favorites={favoriteStops}
           toggle={toggleFavorite}
+          displayFavorites={false} // Display all bus stops
         />
       </div>
     </>
