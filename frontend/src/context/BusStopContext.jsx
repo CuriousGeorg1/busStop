@@ -39,12 +39,17 @@ export const BusStopProvider = ({ children }) => {
 
   // Function to add/remove a favorite stop
   const toggleFavorite = (stopId) => {
-    setFavoriteStops(
-      (prevFavorites) =>
-        prevFavorites.includes(stopId)
-          ? prevFavorites.filter((id) => id !== stopId) // Remove if already in favorites
-          : [...prevFavorites, stopId] // Add if not in favorites
-    );
+    setFavoriteStops((prevFavorites) => {
+      const stop = busStops.find((s) => s.id === stopId);
+      if (!stop) return prevFavorites;
+
+      const isFavorite = prevFavorites.some((fav) => fav.id === stopId);
+      if (isFavorite) {
+        return prevFavorites.filter((fav) => fav.id !== stopId);
+      } else {
+        return [...prevFavorites, stop];
+      }
+    });
   };
 
   return (
