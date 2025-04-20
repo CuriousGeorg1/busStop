@@ -54,7 +54,7 @@ export default function DataList({ stops, displayFavorites }) {
     {
       field: "busStopName",
       headerName: "Bus Stop Name",
-      width: 200,
+      width: 400,
       renderCell: (params) => (
         <Link
           to={`/bus-stops/${params.row.id}`}

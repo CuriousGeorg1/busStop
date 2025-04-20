@@ -2,6 +2,7 @@ import React from "react";
 import DataList from "../components/DataList";
 import { useBusStops } from "../context/BusStopContext";
 import Header from "../components/Header";
+import "./BusStops.css";
 
 /**
  * BusStops page component.
@@ -21,7 +22,7 @@ const BusStops = () => {
       <div>
         <p>Bus Stops</p>
       </div>
-      <div>
+      <div className="datalist">
         <DataList
           stops={busStops}
           toggle={toggleFavorite}
