@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Home.css";
 import Header from "../components/Header.jsx";
 
 /**
@@ -19,7 +19,7 @@ const Home = () => {
       <div className="wrapper">
         <h1>Welcome to the bus stop app</h1>
         <div className="image-container">
-          <img className="image" src="BusTracking.jpg" alt="Home page photo" />
+          <img className="image" src="BusHomePage.jpeg" alt="Home page photo" />
         </div>
         <p>
           This app allows you to view bus stops and add them to your favourites.

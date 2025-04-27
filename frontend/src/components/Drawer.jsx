@@ -43,7 +43,7 @@ export default function TemporaryDrawer() {
   return (
     <div className="drawer">
       <Button className="drawerbutton" onClick={toggleDrawer(true)}>
-        Open drawer
+        Open menu
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}

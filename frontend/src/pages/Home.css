@@ -2,14 +2,10 @@
   width: 100%;
 }
 
-.image {
-  width: 100%;
-  height: 30%;
-}
-
-.wrapper {
-  display: flex;
-  align-items: flex-start;
+.wrapper .image-container .image {
+  width: 300px;
+  height: auto;
+  /* object-fit: cover; */
 }
 
 .wrapper > * {
