@@ -47,7 +47,6 @@ const transformStops = (stops) => {
 export async function getBusStops() {
   try {
     const response = await axios.get(`${busApi}/pretty`);
-    console.log(transformStops(response.data));
     return transformStops(response.data);
   } catch (error) {
     console.error("Error fetching bus stops:", error);
