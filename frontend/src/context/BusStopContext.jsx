@@ -19,7 +19,8 @@ const BusStopContext = createContext();
 // Custom hook to use the context in components
 export const useBusStops = () => useContext(BusStopContext);
 
-// Provider component to wrap the app and provide the context
+// Provider component: used to wrap the app (main.jsx) and provide the context to all components / pages
+// This is where the state is managed and updated
 export const BusStopProvider = ({ children }) => {
   const [busStops, setBusStops] = useState([]);
   const [favoriteStops, setFavoriteStops] = useState([]);

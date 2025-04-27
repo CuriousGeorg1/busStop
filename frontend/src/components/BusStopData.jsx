@@ -1,6 +1,12 @@
 import React from "react";
 import "./BusStopData.css";
 
+/**
+ *
+ * @param {Object} data - Array of bus stop data to be displayed.
+ * @returns {JSX.Element} - Rendered BusStopData component.
+ * @description Displays data for a single bus stop.
+ */
 export default function BusStopData({ data }) {
   return (
     <div className="bus-container">
@@ -8,6 +14,7 @@ export default function BusStopData({ data }) {
       <table className="bus-table">
         <thead>
           <tr className="bus-header">
+            {/* headers for the table */}
             <th className="bus-cell">Line</th>
             <th className="bus-cell">Destination</th>
             <th className="bus-cell">Departure</th>
@@ -15,6 +22,7 @@ export default function BusStopData({ data }) {
           </tr>
         </thead>
         <tbody>
+          {/* map through the data and display it in the component */}
           {data.map((bus, index) => (
             <tr key={index} className="bus-row">
               <td className="bus-cell">{bus.lineref}</td>
