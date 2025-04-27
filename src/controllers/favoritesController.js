@@ -14,7 +14,7 @@ favoritesController.put("/", async (req, res) => {
 favoritesController.get("/", async (req, res) => {
   try {
     const favorites = await getFavorites();
-    res.json(favorites);
+    res.status(200).json(favorites);
   } catch (error) {
     console.error("Error fetching favorites:", error);
     res.status(500).json({ error: "Internal server error" });

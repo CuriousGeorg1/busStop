@@ -8,10 +8,6 @@
  */
 let favorites = [];
 export async function updateFavorites({ favorites: newFavorites }) {
-  // Check if the favorites array is empty
-  if (!Array.isArray(newFavorites) || newFavorites.length === 0) {
-    return { message: "No favorites to update" };
-  }
   // Update the favorites array
   favorites = newFavorites;
   return { message: "Favorites updated", favorites };
