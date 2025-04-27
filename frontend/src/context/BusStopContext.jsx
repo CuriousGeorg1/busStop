@@ -43,7 +43,7 @@ export const BusStopProvider = ({ children }) => {
     const fetchFavorites = async () => {
       try {
         const favorites = await busServices.getFavoriteStops();
-        setFavoriteStops(favorites);
+        setFavoriteStops(favorites || []);
       } catch (error) {
         console.error("Error fetching favorite stops:", error);
       }
@@ -53,14 +53,14 @@ export const BusStopProvider = ({ children }) => {
 
   // Function to add/remove a favorite stop
   const toggleFavorite = (stopId) => {
-    setFavoriteStops((prevFavorites) => {
+    setFavoriteStops((prevFavorites = []) => {
       const stop = busStops.find((s) => s.id === stopId);
       if (!stop) return prevFavorites;
 
       const isFavorite = prevFavorites.some((fav) => fav.id === stopId);
       let updatedFavorites;
       if (isFavorite) {
-        return prevFavorites.filter((fav) => fav.id !== stopId);
+        updatedFavorites = prevFavorites.filter((fav) => fav.id !== stopId);
       } else {
         updatedFavorites = [...prevFavorites, stop];
       }
@@ -74,6 +74,8 @@ export const BusStopProvider = ({ children }) => {
         .catch((error) => {
           console.error("Error updating favorites:", error);
         });
+
+      return updatedFavorites;
     });
   };
 
