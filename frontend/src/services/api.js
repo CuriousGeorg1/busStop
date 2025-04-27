@@ -17,4 +17,31 @@ const getBusStop = async (id) => {
   return request.data;
 };
 
-export default { getBusStops, getBusStop };
+const updateFavoriteStops = async (favorites) => {
+  try {
+    const request = await axios.put(`${baseURL}/favorites`, {
+      favorites,
+    });
+    return request.data;
+  } catch (error) {
+    console.error("API request failed:", error);
+    return [];
+  }
+};
+
+const getFavoriteStops = async () => {
+  try {
+    const request = await axios.get(`${baseURL}/favorites`);
+    return request.data;
+  } catch (error) {
+    console.error("API request failed:", error);
+    return [];
+  }
+};
+
+export default {
+  getBusStops,
+  getBusStop,
+  updateFavoriteStops,
+  getFavoriteStops,
+};
