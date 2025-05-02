@@ -54,7 +54,7 @@ export default function DataList({ stops, displayFavorites }) {
     {
       field: "busStopName",
       headerName: "Bus Stop Name",
-      width: 200,
+      width: 400,
       renderCell: (params) => (
         <Link
           to={`/bus-stops/${params.row.id}`}
@@ -66,13 +66,17 @@ export default function DataList({ stops, displayFavorites }) {
     },
   ];
 
-  // Filter stops based on displayFavorites
+  /**
+   * Filter stops based on displayFavorites
+   * If displayFavorites is true -> show only favorite stops (used on favoritestops page).
+   * If false -> show all stops (used in bus stops page).
+   */
   const data = displayFavorites
-    ? favoriteStops.map((stop) => ({
+    ? favoriteStops?.map((stop) => ({
         id: stop.id,
         favourite: true,
         busStopName: stop.name,
-      }))
+      })) || []
     : stops.map((stop) => ({
         id: stop.id,
         favourite: favoriteStops.some((favStop) => favStop.id === stop.id),
