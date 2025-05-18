@@ -1,0 +1,18 @@
+.header {
+  width: 100%;
+}
+
+.wrapper .image-container .image {
+  width: 300px;
+  height: auto;
+  /* object-fit: cover; */
+}
+
+.wrapper > * {
+  margin: 20px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+}

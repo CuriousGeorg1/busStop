@@ -1,0 +1,30 @@
+.bus-container {
+  padding: 1rem;
+}
+
+.bus-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.bus-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000000;
+}
+
+.bus-header {
+  background-color: #f3f4f6;
+}
+
+.bus-row {
+  text-align: center;
+  border: 1px solid #d1d5db;
+  padding-top: 0.5rem;
+}
+
+.bus-cell {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+}
